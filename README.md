@@ -7,60 +7,89 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+#DEMO DE LA APLICACIÓN
+[Cafeteria](http://67.207.82.186/ "Cafeteria")
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Correo: ** danmcode@gmail.com 
+- **Contraseña:** d4ab5621
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Caracteristicas
+Danmcode, necesita para unas de sus cafeterías que tiene en sede de un software, que permita almacenar y gestionar el inventario de sus productos. Este software debe permitir la creación de productos, la edición de los productos, la eliminación de productos y listar todos los productos registrados en el sistema.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### El desarrollo del proyecto se realizó usando la pila LAMP (Linux, Apache, MariaDb):
+=============
+Requisitos para la ejecución del proyecto:
+1. PHP 8
+2. Laravel 9
+3. Apache
+4. MariaDB
+5. Linux
+6. NodeJS v18.14.2
+7. Composer
 
-## Learning Laravel
+Ejecución del proyecto:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Antes de iniciar ya se debe haber configurado la base de datos del proyecto y haber instalado las dependencias necesarias para que se ejecute Laravel.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. Se debe ingresar a la carpeta raíz del proyecto y hacer una copia de las variables de entorno:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+	`$ mv .env.example .env`
 
-## Laravel Sponsors
+	Luego configurar las variables de entorno correspondientes a la base de datos y nombre de la aplicación:
+	
+	```bash
+	APP_NAME=Cafeteria
+	...
+	DB_DATABASE=cafeteria
+	DB_USERNAME=user
+	DB_PASSWORD=password
+	```
+2. Luego instalar las dependencias de composer
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+	`$ composer install`
 
-### Premium Partners
+3. Se instalan las dependencias de NodeJS para la ejecuión del Front
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+	`$ npm install`
+	
+	3.1. Para entorno de desarrollo se ejecutan los siguientes comandos:
+	`$ npm run dev`
+	
+	`$ php artisan serve`
+	
+	 3.1. Para compilar el front de la App en produción se ejecuta:
+	 
+	`$ npm run build`
+	
+4. Gererar las migraciones de la base de datos: 
 
-## Contributing
+	`$ php artisan migrate`
+	
+5. Gereal la llave con la que se cifraran las peticiones: 
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+	`$ php artisan key:generate`
 
-## Code of Conduct
+### Consultas SQL
+#### Consulta que permita conocer cuál es el producto que más stock tiene.
+```bash
+SELECT 
+cafeteria.products.name AS producto,
+cafeteria.products.stock
+FROM cafeteria.products
+ORDER BY stock DESC
+LIMIT 1;
+	```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### Consulta que permita conocer cuál es el producto más vendido.
+```bash
+SELECT 
+A.product_id AS id_producto,
+B.name AS producto_mas_vendido,
+SUM(A.amount) AS total_ventas
+FROM cafeteria.sold_products A
+JOIN cafeteria.products B
+ON A.product_id = B.id
+GROUP BY A.product_id
+ORDER BY A.amount DESC
+	```
+###End
