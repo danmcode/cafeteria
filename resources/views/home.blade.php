@@ -64,8 +64,9 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <a href="{{ route('productos.edit', $product->id) }}"
-                                                    class="btn btn-primary btn-sm">
+                                                    class="btn btn-primary btn-sm" >
                                                     <i class="bi bi-pencil-fill"></i>
+                                                    {{ __('Editar') }}
                                                 </a>
                                             </div>
                                             <div class="col-4">
@@ -77,6 +78,7 @@
                                                     data-bs-stock="{{ $product->stock }}"
                                                     class="btn btn-secondary btn-sm">
                                                     <i class="bi bi-send"></i>
+                                                    {{ __('Vender') }}
                                                 </a>
                                             </div>
                                             <div class="col-4">
@@ -88,6 +90,7 @@
                                                     <button class="btn btn-danger btn-sm" type="submit"
                                                         onclick="return confirm('¿Desea eliminar...?')">
                                                         <i class="bi bi-trash-fill"></i>
+                                                        {{ __('Eliminar') }}
                                                     </button>
                                                 </form>
                                             </div>
