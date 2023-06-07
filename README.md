@@ -78,7 +78,7 @@ cafeteria.products.stock
 FROM cafeteria.products
 ORDER BY stock DESC
 LIMIT 1;
-	```
+```
 
 #### Consulta que permita conocer cuál es el producto más vendido.
 ```bash
@@ -91,5 +91,5 @@ JOIN cafeteria.products B
 ON A.product_id = B.id
 GROUP BY A.product_id
 ORDER BY A.amount DESC
-	```
+```
 ###End
