@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-#DEMO DE LA APLICACIÓN
+# DEMO DE LA APLICACIÓN
 Ingresa al siguiente link: [Cafeteria](http://67.207.82.186/ "Cafeteria")
 
 - **Correo:** danmcode@gmail.com 
@@ -90,6 +90,5 @@ FROM cafeteria.sold_products A
 JOIN cafeteria.products B
 ON A.product_id = B.id
 GROUP BY A.product_id
-ORDER BY A.amount DESC
+ORDER BY A.amount DESC;
 ```
-###End
