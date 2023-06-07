@@ -8,16 +8,16 @@
 </p>
 
 #DEMO DE LA APLICACIÓN
-[Cafeteria](http://67.207.82.186/ "Cafeteria")
+Ingresa al siguiente link: [Cafeteria](http://67.207.82.186/ "Cafeteria")
 
-- **Correo: ** danmcode@gmail.com 
+- **Correo:** danmcode@gmail.com 
 - **Contraseña:** d4ab5621
 
 ### Caracteristicas
 Danmcode, necesita para unas de sus cafeterías que tiene en sede de un software, que permita almacenar y gestionar el inventario de sus productos. Este software debe permitir la creación de productos, la edición de los productos, la eliminación de productos y listar todos los productos registrados en el sistema.
 
 ### El desarrollo del proyecto se realizó usando la pila LAMP (Linux, Apache, MariaDb):
-=============
+
 Requisitos para la ejecución del proyecto:
 1. PHP 8
 2. Laravel 9
